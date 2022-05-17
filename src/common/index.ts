@@ -1,0 +1,5 @@
+export { Matrix } from './utils/Matrix'
+export { MatrixDenser } from './utils/MatrixDenser'
+export { MatrixTrainer } from './utils/MatrixTrainer'
+export { MatrixExtractor } from './utils/MatrixExtractor'
+export { MatrixTransformer } from './utils/MatrixTransformer'

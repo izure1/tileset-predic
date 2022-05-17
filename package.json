@@ -1,0 +1,46 @@
+{
+  "name": "tileset-predic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/umd/index.js",
+  "scripts": {
+    "build": "webpack && tsc --emitDeclarationOnly",
+    "test": "jest",
+    "test:matrix": "jest src/common/utils/ponicode/Matrix.test.ts",
+    "test:train": "jest -t 'Trainer.train'",
+    "test:gen": "jest -t 'Trainer.generate'"
+  },
+  "files": [
+    "dist/**/*.ts",
+    "dist/**/*.js",
+    "!dist/**/ponicode/**/*"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^27.4.1",
+    "@types/lodash": "^4.14.182",
+    "@types/pngjs": "^6.0.1",
+    "@types/seedrandom": "^3.0.2",
+    "@types/sharp": "^0.30.2",
+    "@types/shuffle-seed": "^1.1.0",
+    "@types/spark-md5": "^3.0.2",
+    "@types/string-similarity": "^4.0.0",
+    "fs-extra": "^10.1.0",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "mathjs": "^10.5.3",
+    "native-image-diff": "^0.1.14",
+    "node-relation": "^4.7.1",
+    "pngjs": "^6.0.0",
+    "sharp": "^0.30.4",
+    "shuffle-seed": "^1.1.6",
+    "spark-md5": "^3.0.2",
+    "string-similarity": "^4.0.4"
+  }
+}
