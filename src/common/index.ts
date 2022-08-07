@@ -1,4 +1,4 @@
-export { Matrix } from './utils/Matrix'
+export { Matrix } from 'coord-matrix2d'
 export { MatrixDenser } from './utils/MatrixDenser'
 export { MatrixTrainer } from './utils/MatrixTrainer'
 export { MatrixExtractor } from './utils/MatrixExtractor'

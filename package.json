@@ -33,6 +33,7 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
+    "coord-matrix2d": "^1.0.0-beta.1",
     "lodash": "^4.17.21",
     "mathjs": "^10.5.3",
     "native-image-diff": "^0.1.14",

@@ -1,4 +1,4 @@
-import { Matrix } from './Matrix'
+import { Matrix } from 'coord-matrix2d'
 
 export type MatrixTransformerKey = string|number
 

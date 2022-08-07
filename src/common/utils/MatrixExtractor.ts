@@ -1,9 +1,7 @@
 import fs from 'fs-extra'
 import sharp from 'sharp'
 import { PNG } from 'pngjs'
-
-import { Matrix } from '../utils/Matrix'
-
+import { Matrix } from 'coord-matrix2d'
 
 export class MatrixExtractor {
   private readonly __chunkWidth: number

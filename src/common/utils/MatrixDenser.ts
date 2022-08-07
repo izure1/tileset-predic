@@ -1,10 +1,10 @@
+import { Matrix } from 'coord-matrix2d'
 import { diffImages } from 'native-image-diff'
 import { PNG } from 'pngjs'
 import { compareTwoStrings } from 'string-similarity'
 import { Relationship } from 'node-relation/dist/umd/raw'
 import { RelationData } from 'node-relation/dist/common/raw/Relationship'
 
-import { Matrix } from './Matrix'
 import { MatrixTransformer } from './MatrixTransformer'
 
 

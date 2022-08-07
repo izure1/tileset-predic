@@ -1,10 +1,10 @@
 import { uniq } from 'lodash'
 import { hash } from 'spark-md5'
 import { shuffle } from 'shuffle-seed'
+import { Matrix } from 'coord-matrix2d'
 import { RelationData } from 'node-relation/dist/common/raw/Relationship'
 import { Relationship } from 'node-relation/dist/umd/raw/index'
 
-import { Matrix } from './Matrix'
 import { MatrixTransformer } from './MatrixTransformer'
 
 
