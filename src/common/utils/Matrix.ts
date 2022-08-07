@@ -38,6 +38,17 @@ export class Matrix<T> {
   }
 
   /**
+   * Creates a new matrix instance with same row and col size.
+   * @param row The row size of new matrix.
+   * @param col The column size of new matrix.
+   * @param elements The elements of new matrix.
+   * @returns The new matrix instance.
+   */
+  static Create<T>(row: number, col: number, elements: T[]): Matrix<T> {
+    return new Matrix(row, col, elements)
+  }
+
+  /**
    * Create matrix instance from 2d-array data type.
    * @param array Source of matrix elements as 2d-array data type.
    * @returns Matrix instance.
@@ -61,12 +72,12 @@ export class Matrix<T> {
   }
 
   /**
-   * Returns added result matrix between both matrix.
+   * Returns added result matrix between both matrix. It will returns `a + b`
    * @param a The matrix.
    * @param b The matrix.
    */
   static Add(a: Matrix<number>, b: Matrix<number>): Matrix<number> {
-    if (!Matrix.SizeMatch(a, b)) {
+    if (!Matrix.IsSameSize(a, b)) {
       throw Matrix.ERR_SIZE_NOT_MATCH()
     }
     return new Matrix(a.row, a.col, a.elements.map((av, i) => av + b.elements[i]))
@@ -78,10 +89,40 @@ export class Matrix<T> {
    * @param b The matrix.
    */
   static Sub(a: Matrix<number>, b: Matrix<number>): Matrix<number> {
-    if (!Matrix.SizeMatch(a, b)) {
+    if (!Matrix.IsSameSize(a, b)) {
       throw Matrix.ERR_SIZE_NOT_MATCH()
     }
     return new Matrix(a.row, a.col, a.elements.map((av, i) => av - b.elements[i]))
+  }
+
+  /**
+   * Returns multiplied result matrix between both matrix.
+   * The matrix product must be same `a.col` and `b.row` size. If not, it will throw an error.
+   * @param a The first matrix.
+   * @param b The second matrix.
+   * @returns New matrix instance.
+   */
+  static Prod(a: Matrix<number>, b: Matrix<number>): Matrix<number> {
+    if (a.col !== b.row) {
+      throw Matrix.ERR_MULTIPLY_SIZE_NOT_MATCH()
+    }
+    const matrix = new Matrix<number>(a.row, b.col, [])
+    for (let i = 1; i < a.col; i++) {
+      const aElement = a.getRowElements(i)
+      const bElement = b.getColElements(i)
+      const result = aElement.map((av, j) => av * bElement[j])
+      matrix.elements.push(...result)
+    }
+    return matrix
+  }
+
+  /**
+   * Returns whether the matrix has same size. It calculates with `row` and `col` properties.
+   * @param a The matrix.
+   * @param b The matrix.
+   */
+   static IsSameSize(a: Matrix<any>, b: Matrix<any>): boolean {
+    return a.row === b.row && a.col === b.row
   }
 
   /**
@@ -94,15 +135,6 @@ export class Matrix<T> {
     return index < min || index > max
   }
 
-  /**
-   * Returns whether the matrix has same size. It calculates with `row` and `col` properties.
-   * @param a The matrix.
-   * @param b The matrix.
-   */
-  static SizeMatch(a: Matrix<any>, b: Matrix<any>): boolean {
-    return a.row === b.row && a.col === b.row
-  }
-
   protected static ERR_EXCEED_RANGE(min: number, max: number, index: number): Error {
     return new Error(`The index exceeds the size of the matrix. The size should be between ${min} to ${max}, but got a ${index}`)
   }
@@ -111,8 +143,13 @@ export class Matrix<T> {
     return new Error(`The both matrixes are not match row, col size.`)
   }
 
+  protected static ERR_MULTIPLY_SIZE_NOT_MATCH(): Error {
+    return new Error(`The size of matrixes are not match. You can't multiply them. The matrixes row and col size should be same.`)
+  }
+
   /**
    * Get new matrix from part of source matrix. It returns neighbor elements from point of coordinates of source matrix.
+   * The size of new matrix is multiple of row and column of arguments.
    * @param source The source matrix.
    * @param rowIndex Point of row index.
    * @param colIndex Point of column index.

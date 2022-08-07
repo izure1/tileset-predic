@@ -1,4 +1,3 @@
-// import pixelmatch from 'pixelmatch'
 import { diffImages } from 'native-image-diff'
 import { PNG } from 'pngjs'
 import { compareTwoStrings } from 'string-similarity'
